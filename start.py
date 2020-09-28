@@ -11,6 +11,7 @@ class vTox():
     """vTox"""
 
     def __init__(self):
+        """Initialization"""
         self.bot = bot.DiscordBot(self, conf.get())
         self.loop = asyncio.get_event_loop()
         self.log = log.LogHandler()
@@ -22,7 +23,6 @@ class vTox():
         
     def init(self):
         """This function is called for initialization."""
-        self.loop = asyncio.get_event_loop()
         token = self.config["token"]
         self.loop.create_task(self.bot.start(token))
         try:

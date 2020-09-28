@@ -1,0 +1,12 @@
+# Global Configuration Variables
+username: "vTox"
+token: "RtgHRTJ4eYDFGFDH4RDGH0J0.C345HF.WTERfgjsDGHYRETSghESGR_GDHg"
+prefix: "!"
+
+# Plugin Configuration Variables
+auto_load_plugins: 
+  - PluginControl
+
+# Main Server Configuration Variables
+main_server: "Test Discord"
+log_channel: "logs"

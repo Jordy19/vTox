@@ -46,7 +46,7 @@ class PluginControl(commands.Cog):
             plugin_path = f"plugins.{args[1]}.plugin"
             try:
                 self.bot.load_extension(plugin_path)
-            except discord.ext.commands.errors.CommandInvokeError as r:
+            except discord.ext.commands.errors.ExtensionFailed as r:
                 await ctx.send(f"Errror: {r}")
             else:
                 await ctx.send(f"Loaded {args[1]}!")
@@ -61,7 +61,7 @@ class PluginControl(commands.Cog):
             plugin_path = f"plugins.{args[1]}.plugin"
             try:
                 self.bot.unload_extension(plugin_path)
-            except discord.ext.commands.errors.CommandInvokeError as r:
+            except discord.ext.commands.errors.ExtensionFailed as r:
                 await ctx.send(f"Errror: {r}")
             else:
                 await ctx.send(f"Unloaded {args[1]}!")
@@ -75,7 +75,7 @@ class PluginControl(commands.Cog):
             plugin_path = f"plugins.{args[1]}.plugin"
             try:
                 self.bot.reload_extension(plugin_path)
-            except discord.ext.commands.errors.CommandInvokeError as r:
+            except discord.ext.commands.errors.ExtensionFailed as r:
                 await ctx.send(f"Errror: {r}")
             else:
                 await ctx.send(f"Reloaded {args[1]}!")

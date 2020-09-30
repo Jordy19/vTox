@@ -12,7 +12,7 @@ class DiscordBot(commands.Bot):
     """
 
     def __init__(self, server, config):
-        super(DiscordBot, self).__init__(command_prefix="!")
+        super(DiscordBot, self).__init__(command_prefix="!", owner_id=int(config["owner"]))
         self.log = LogHandler(config["username"])
         self.config = config
         self.server = server
@@ -32,7 +32,7 @@ class DiscordBot(commands.Bot):
     async def on_ready(self):
         self.log = LogHandler()
         await self.change_presence(activity=discord.Game(name="Powered by vTox."))
-        self.log.info("Connected to Discord")
+        self.log.info(f"Connected to Discord (Bot owner: {self.config['owner']})")
         self.log.info(f"Plugins available ({len(self.plugin_list['available'])}): {', '.join(self.plugin_list['available'])}")
         self.log.info(f"Plugins loaded ({len(self.plugin_list['loaded'])}): {', '.join(self.plugin_list['loaded'])}")
         if len(self.plugin_list['loaded']) == 0:

@@ -6,12 +6,19 @@ from discord.ext.commands import Bot
 
 from utils.log import LogHandler
 
+
 class DiscordBot(commands.Bot):
     """
-        Main client for vTox.
+        A class that inherit the commands.Bot class. 
     """
 
     def __init__(self, server, config):
+        """Constructor.
+        
+        Args:
+            server: The vTox() class from start.py
+            config: A dict with the bot configuration values. (config.yml)
+        """
         super(DiscordBot, self).__init__(command_prefix="!", owner_id=int(config["owner"]))
         self.log = LogHandler(config["username"])
         self.config = config
@@ -30,6 +37,7 @@ class DiscordBot(commands.Bot):
                 self.log.error(f"[{self.user}/{plugin}] I'm unable to load this module: {e}")
 
     async def on_ready(self):
+        """Event from discord.py that gets triggered when the Discord bot is ready."""
         self.log = LogHandler()
         await self.change_presence(activity=discord.Game(name="Powered by vTox."))
         self.log.info(f"Connected to Discord (Bot owner: {self.config['owner']})")

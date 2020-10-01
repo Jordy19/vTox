@@ -1,8 +1,8 @@
 # Project vTox
 
-import time
 import asyncio
 import threading
+import time
 
 from utils import bot, conf, log
 
@@ -11,17 +11,17 @@ class vTox():
     """vTox"""
 
     def __init__(self):
-        """Initialization"""
+        """Constructor."""
         self.bot = bot.DiscordBot(self, conf.get())
         self.loop = asyncio.get_event_loop()
         self.log = log.LogHandler()
         self.config = conf.get()
 
-    def disconnect(self, bot):
+    def disconnect(self):
         """Disconnect ourself from Discord"""
         self.bot.logout()
         
-    def init(self):
+    def run(self):
         """This function is called for initialization."""
         token = self.config["token"]
         self.loop.create_task(self.bot.start(token))
@@ -38,5 +38,5 @@ if __name__ == "__main__":
     except ImportError:
         print("Failure, discord.py not found.")
         print("vTox requires https://github.com/Rapptz/discord.py to work.")
-    main_class = vTox()
-    main_class.init()
+    engine = vTox()
+    engine.init()

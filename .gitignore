@@ -133,7 +133,7 @@ config.yml
 kill_python.bat
 
 # Non-public plugins because... reasons.
-plugins/Atelier801
+plugins/Staff801
 
 # Labs. Do I have to explain this one?
 .labs/

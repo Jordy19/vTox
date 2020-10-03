@@ -21,7 +21,7 @@ class vTox():
         """Disconnect ourself from Discord"""
         self.bot.logout()
         
-    def run(self):
+    def init(self):
         """This function is called for initialization."""
         token = self.config["token"]
         self.loop.create_task(self.bot.start(token))

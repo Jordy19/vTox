@@ -33,7 +33,7 @@ class Log():
 
         """
         text_format = self._getFormat(message)
-        print(f"{'INFO':5} {text_format} {message}")
+        print(f"{'INFO':5} {text_format}")
 
     def error(self, message):
         """Prints the ERROR log text.
@@ -42,7 +42,7 @@ class Log():
             message: A string containing text.
         """
         text_format = self._getFormat(message)
-        print(f"{'ERROR':5} {text_format} {message}")
+        print(f"{'ERROR':5} {text_format}")
 
     def debug(self, message):
         """Prints the DEBUG log text.
@@ -51,4 +51,4 @@ class Log():
             message: A string containing text.
         """
         text_format = self._getFormat(message)
-        print(f"{'DEBUG':5} {text_format} {message}")
+        print(f"{'DEBUG':5} {text_format}")

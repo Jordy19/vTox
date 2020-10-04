@@ -6,7 +6,7 @@ prefix: "!"
 
 # Plugin Configuration Variables
 auto_load_plugins: 
-  - PluginControl
+  - Wikipedia
 
 # Main Server Configuration Variables
 main_server: "Test Discord"

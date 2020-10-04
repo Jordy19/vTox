@@ -1,19 +1,28 @@
-# Bot Management plugin for vTox
-
 import discord
 from discord.ext import commands
 
 
-class Owner(commands.Cog):
+class Plugin(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
         self.info = {
-            "name": "Owner plugin",
-            "desc": "Stuff for the bot owner.",
+            "name": "Plugin Management",
+            "desc": "load, unload, reload plugins on the go.",
             "authors": "Jordy19",
             "version": "1.0"
         }
+
+    @commands.command()
+    @commands.is_owner()
+    async def nick(self, ctx, *args):
+        """Change the name of the bot"""
+        if not args:
+            if not args:
+                await ctx.send("Error, This command requires parameters: <name>")
+            else:
+                name = args[0]
+                ctx._check.guild.me.edit(nick=name)
 
     @commands.command()
     @commands.is_owner()
@@ -96,4 +105,4 @@ class Owner(commands.Cog):
         await ctx.send(embed=embed)
 
 def setup(bot):
-    bot.add_cog(Owner(bot))
+    bot.add_cog(Plugin(bot))

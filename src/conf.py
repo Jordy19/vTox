@@ -1,7 +1,7 @@
 import yaml
 
 
-class ConfigHandler():
+class Config():
     """Config Handler"""
 
     def _get(self):
@@ -12,4 +12,4 @@ class ConfigHandler():
 
 def get():
     """Returns the value received from _get()"""
-    return ConfigHandler()._get()
+    return Config()._get()

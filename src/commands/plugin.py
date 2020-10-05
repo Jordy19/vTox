@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 
-
 class Plugin(commands.Cog):
 
     def __init__(self, bot):
@@ -42,7 +41,7 @@ class Plugin(commands.Cog):
 
     async def list(self, ctx, *args):
         """Plugin List"""
-        await ctx.send(f"**Loaded plugins:** {', '.join(self.bot.cogs)}")
+        await ctx.send(f"**Loaded plugins:** {', '.join(self.bot.plugin_list['loaded'])}")
 
     async def load(self, ctx, *args):
         try:
@@ -50,15 +49,12 @@ class Plugin(commands.Cog):
         except IndexError:
             await ctx.send("Error, this command requires parameters: <plugin name>")
         else:
-            plugin_path = f"plugins.{args[1]}.plugin"
-            try:
-                self.bot.load_extension(plugin_path)
-            except discord.ext.commands.errors.ExtensionFailed as r:
-                await ctx.send(f"Errror: {r}")
-            except discord.ext.commands.errors.ExtensionAlreadyLoaded as r:
-                await ctx.send(f"Errror: {r}")
+            name = args[1].title()
+            if name in self.bot.plugin_list['loaded']:
+                await ctx.send(f"Error, the plugin `{name}` is already loaded!")
             else:
-                await ctx.send(f"Loaded {args[1]}!")
+                self.bot.plugin.load(args[1])
+                await ctx.send(f"Plugin `{name}` has been loaded!")
 
 
     async def unload(self, ctx, *args):
@@ -67,13 +63,13 @@ class Plugin(commands.Cog):
         except IndexError:
             await ctx.send("Error, this command requires parameters: <plugin name>")
         else:
-            plugin_path = f"plugins.{args[1]}.plugin"
+            name = args[1].title()
             try:
-                self.bot.unload_extension(plugin_path)
+                self.bot.plugin.unload(name)
             except discord.ext.commands.errors.ExtensionFailed as r:
                 await ctx.send(f"Errror: {r}")
             else:
-                await ctx.send(f"Unloaded {args[1]}!")
+                await ctx.send(f"Unloaded {name}!")
 
     async def reload(self, ctx, *args):
         try:

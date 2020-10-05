@@ -9,7 +9,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot
 
-from src import conf, log, plugin
+from src import conf, log, plugins
 
 
 class vTox(commands.Bot):
@@ -29,7 +29,8 @@ class vTox(commands.Bot):
         self.engine = engine
         self.config = config
         # Plugin loading requires 'self'.
-        self.plugin = plugin.Plugin(self)
+        self.plugin = plugins.Plugin(self)
+        self.plugin_list = {"available": [], "loaded": []}
         # self.config = config
 
     async def on_ready(self):
@@ -38,14 +39,6 @@ class vTox(commands.Bot):
         self.log.info(f"Connected to Discord (Bot owner: {self.config['owner']})")
         # Load the plugins from our config file.
         self.plugin.load_from_config(self.config)
-        # Retriev the plugin list.
-        plugin_list = self.plugin.get_list()
-        self.log.info(f"Plugins available ({len(plugin_list['available'])}): {', '.join(plugin_list['available'])}")
-        self.log.info(f"Plugins loaded ({len(plugin_list['loaded'])}): {', '.join(plugin_list['loaded'])}")
-        if len(plugin_list['loaded']) == 0:
-            self.log.info("There are no plugins loaded, the bot will be terminated.")
-            await self.logout()
-            sys.exit()
 
 
 class Engine():

@@ -76,7 +76,7 @@ if __name__ == "__main__":
     try:
         __import__("discord")
     except ImportError:
-        print("Failure, discord.py not found.")
-        print("vTox requires https://github.com/Rapptz/discord.py to work.")
+        logger.error("Failure, discord.py not found.")
+        logger.error("vTox requires https://github.com/Rapptz/discord.py to work.")
     engine = Engine()
     engine.init()

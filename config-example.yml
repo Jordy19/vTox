@@ -1,8 +1,21 @@
-# Global Configuration Variables
+##
+# vTox Configuration
+##
+
+# The bot username.
 username: "vTox"
+
+# The Discord APP token
 token: "RtgHRTJ4eYDFGFDH4RDGH0J0.C345HF.WTERfgjsDGHYRETSghESGR_GDHg"
+
+# Your Discord user id.
 owner: "760230574706655252"
+
+# The prefix the bot will use for its commands.
 prefix: "!"
+
+# Toggle debug mode. (Boolean: True/False)
+debug_mode: False
 
 # Plugin Configuration Variables
 auto_load_plugins: 

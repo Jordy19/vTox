@@ -25,7 +25,7 @@ class vTox(commands.Bot):
             config: A dict with the bot configuration values. (config.yml)
         """
         super(vTox, self).__init__(command_prefix="!", owner_id=int(config["owner"]))
-        self.log = log.Log(config["username"])
+        self.log = log.Log(config["username"], config["debug_mode"])
         self.engine = engine
         self.config = config
         # Plugin loading requires 'self'.

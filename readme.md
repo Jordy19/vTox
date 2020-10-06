@@ -15,4 +15,4 @@ vTox is build with the [discord.py](https://github.com/Rapptz/discord.py) API Wr
 1. Create your bot at the [Discord Developers Portal](https://discord.com/developers/applications).
 2. Make sure that you have the [discord.py](https://github.com/Rapptz/discord.py)  library installed.
 3. Edit `config-example.yml` and rename it to `config.yml`
-4. `python start.py`
+4. `python vtox.py`

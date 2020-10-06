@@ -14,7 +14,7 @@ class Plugin():
             Constructor.
         """
         self.bot = bot
-        self.core = ["owner", "plugin"]
+        self.core = ["owner"]
         self.path = "plugins.{}.plugin"
 
     def load(self, name, core=False):

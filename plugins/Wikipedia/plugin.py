@@ -16,7 +16,10 @@ class Wikipedia(commands.Cog):
             "version": "1.0"
         }
 
-    @commands.command(pass_context=True)
+    @commands.command(
+        pass_context=True,
+        description='Fetch wikipedia articles.',
+    )
     async def wiki(self, ctx, article):
         """Wikipedia command
             wiki [Article]"""

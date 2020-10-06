@@ -37,6 +37,7 @@ class vTox(commands.Bot):
         """Event from discord.py that gets triggered when the Discord bot is ready."""
         await self.change_presence(activity=discord.Game(name="Powered by vTox."))
         self.log.info(f"Connected to Discord (Bot owner: {self.config['owner']})")
+        self.remove_command('help')
         # Load the plugins from our config file.
         self.plugin.load_from_config(self.config)
 

@@ -14,17 +14,6 @@ class Plugin(commands.Cog):
 
     @commands.command()
     @commands.is_owner()
-    async def nick(self, ctx, *args):
-        """Change the name of the bot"""
-        if not args:
-            if not args:
-                await ctx.send("Error, This command requires parameters: <name>")
-            else:
-                name = args[0]
-                ctx._check.guild.me.edit(nick=name)
-
-    @commands.command()
-    @commands.is_owner()
     async def plugin(self, ctx, *args):
         if not args:
             await self.plugin_help(ctx, *args)

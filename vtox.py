@@ -25,13 +25,11 @@ class vTox(commands.Bot):
             config: A dict with the bot configuration values. (config.yml)
         """
         super(vTox, self).__init__(command_prefix="!", owner_id=int(config["owner"]))
-        self.log = log.Log(config["username"], config["debug_mode"])
+        self.plugin_list = {"available": [], "loaded": []}
+        self.log = log.Log(debug=config["debug_mode"])
+        self.plugin = plugins.Plugin(self)
         self.engine = engine
         self.config = config
-        # Plugin loading requires 'self'.
-        self.plugin = plugins.Plugin(self)
-        self.plugin_list = {"available": [], "loaded": []}
-        # self.config = config
 
     async def on_ready(self):
         """Event from discord.py that gets triggered when the Discord bot is ready."""

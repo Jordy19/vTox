@@ -3,14 +3,14 @@ import datetime
 
 class Log():
 
-    def __init__(self, plugin_name="", debug_mode=False):
+    def __init__(self, plugin_name="", debug=False):
         """"Constructor.
         
         Args:
             plugin_name: The name of the plugin
         """
         self.plugin = plugin_name
-        self.debug_mode = debug_mode
+        self.debug_mode = debug
         self.now = datetime.datetime.now()
         self.timestamp = self.now.strftime("%b-%d-%Y (%H:%M:%S)")
 
@@ -51,7 +51,7 @@ class Log():
         Args: 
             message: A string containing text.
         """
-        if self.debug_mode.lower() == "true":
+        if bool(self.debug_mode):
             text_format = self._getFormat(message)
             print(f"{'DEBUG':5} {text_format}")
         else:
